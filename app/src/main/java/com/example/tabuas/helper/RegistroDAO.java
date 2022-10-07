@@ -84,7 +84,7 @@ public class RegistroDAO implements IRegDAO {
     public List<Registro> listar() {
         List<Registro> registros = new ArrayList<>();
 
-        String sql = "SELECT * FROM" + RegistroHelper.TABELA_TABUAS+";";
+        String sql = "SELECT * FROM"+RegistroHelper.TABELA_TABUAS+";";
 
         Cursor c = le.rawQuery(sql,null);
 
