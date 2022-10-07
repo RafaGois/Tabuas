@@ -34,7 +34,12 @@
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="32dp"
         android:clickable="true"
+        android:soundEffectsEnabled="true"
+        app:backgroundTint="#698060"
+        app:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/mais" />
+        app:rippleColor="#FFF"
+        app:srcCompat="@drawable/mais"
+        app:useCompatPadding="false" />
 </androidx.constraintlayout.widget.ConstraintLayout>
