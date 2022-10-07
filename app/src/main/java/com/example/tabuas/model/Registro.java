@@ -2,10 +2,19 @@ package com.example.tabuas.model;
 
 public class Registro {
 
+    private int id;
     private String dateTime;
     private String categoria;
     private double valor;
     private String turno;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getDateTime() {
         return dateTime;
