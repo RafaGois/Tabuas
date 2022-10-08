@@ -49,7 +49,7 @@ public class ListagemRegsTabuas extends AppCompatActivity {
                         Registro regSelecionado = new Registro();
 
                         Intent intent = new Intent(ListagemRegsTabuas.this,AddRegTabuas.class);
-                        intent.putExtra("Tarefa",regSelecionado);
+                        intent.putExtra("registro",regSelecionado);
                         startActivity(intent);
                     }
 
