@@ -33,7 +33,7 @@ public class ListagemRegsTabuas extends AppCompatActivity {
     }
 
     public void navegaAdicao (View view) {
-        Intent intent =  new Intent(this,ListagemRegsTabuas.class);
+        Intent intent =  new Intent(this,AddRegTabuas.class);
         startActivity(intent);
     }
 
