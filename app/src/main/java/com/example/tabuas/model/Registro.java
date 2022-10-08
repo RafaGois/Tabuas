@@ -1,6 +1,8 @@
 package com.example.tabuas.model;
 
-public class Registro {
+import java.io.Serializable;
+
+public class Registro implements Serializable {
 
     private int id;
     private String dateTime;
