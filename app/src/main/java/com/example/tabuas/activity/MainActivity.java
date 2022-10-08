@@ -8,12 +8,16 @@ import android.view.View;
 
 import com.example.tabuas.R;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Objects.requireNonNull(getSupportActionBar()).hide();
     }
 
     public void navegaListagem (View view) {

@@ -13,14 +13,14 @@
         android:theme="@style/Theme.Tabuas"
         tools:targetApi="31">
         <activity
-            android:name=".ListagemRegsTabuas"
+            android:name=".activity.ListagemRegsTabuas"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AddRegTabuas"
+            android:name=".activity.AddRegTabuas"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

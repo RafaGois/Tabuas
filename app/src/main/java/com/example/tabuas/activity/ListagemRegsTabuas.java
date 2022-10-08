@@ -9,6 +9,8 @@ import android.view.View;
 
 import com.example.tabuas.R;
 
+import java.util.Objects;
+
 public class ListagemRegsTabuas extends AppCompatActivity {
 
     RecyclerView recyclerView;
@@ -18,9 +20,9 @@ public class ListagemRegsTabuas extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listagem_regs_tabuas);
 
+        Objects.requireNonNull(getSupportActionBar()).hide();
+
         recyclerView = findViewById(R.id.recycler);
-
-
     }
 
     @Override
