@@ -46,7 +46,7 @@ public class ListagemRegsTabuas extends AppCompatActivity {
                 new RecyclerItemClickListener(getApplicationContext(), recyclerView, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Registro regSelecionado = new Registro();
+                        Registro regSelecionado = registros.get(position);
 
                         Intent intent = new Intent(ListagemRegsTabuas.this,AddRegTabuas.class);
                         intent.putExtra("registro",regSelecionado);
@@ -60,7 +60,7 @@ public class ListagemRegsTabuas extends AppCompatActivity {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ListagemRegsTabuas.this);
 
                         dialog.setTitle("Confirmar exclusão");
-                        dialog.setMessage("Deseja excluir a tarefa :"+ registroSelecionado.getId()+" ?");
+                        dialog.setMessage("Deseja excluir a tarefa :"+ registroSelecionado.getValor()+" ?");
                         dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -87,7 +87,6 @@ public class ListagemRegsTabuas extends AppCompatActivity {
 
                     }
                 }));
-
 
     }
 
