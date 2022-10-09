@@ -51,25 +51,39 @@ public class AddRegTabuas extends AppCompatActivity {
         double valor = Double.parseDouble(inputValor.getText().toString());
         String turno = spinnerTurno.getSelectedItem().toString();
 
-        Registro registro = new Registro();
-        registro.setDateTime(data);
-        registro.setCategoria(categoria);
-        registro.setValor(valor);
-        registro.setTurno(turno);
-
         if (registroAtual != null) {
 
-            if (dao.atualizar(registro)) {
-                Toast.makeText(this, "Valor atualizado com sucesso", Toast.LENGTH_SHORT).show();
-                finish();
-            } else {
-                Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+            if (!data.isEmpty() && !categoria.isEmpty()) {
+                Registro registro = new Registro();
+                registro.setDateTime(data);
+                registro.setCategoria(categoria);
+                registro.setValor(valor);
+                registro.setTurno(turno);
+
+                if (dao.atualizar(registro)) {
+                    Toast.makeText(this, "Valor atualizado com sucesso", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                }
             }
+
         } else {
 
-            if (data.isEmpty()) {
-                Registro registro1 = new Registro();
+            if (!data.isEmpty()) {
+                Registro registro = new Registro();
 
+                registro.setDateTime(data);
+                registro.setCategoria(categoria);
+                registro.setValor(valor);
+                registro.setTurno(turno);
+
+                if (dao.salvar(registro)) {
+                    Toast.makeText(this, "Registro salvo", Toast.LENGTH_SHORT).show();
+                    finish();
+                } else {
+                    Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                }
 
             }
         }
