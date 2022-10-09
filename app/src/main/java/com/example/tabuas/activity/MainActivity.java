@@ -24,4 +24,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent =  new Intent(this,ListagemRegsTabuas.class);
         startActivity(intent);
     }
+
+    public void navegaGraficos (View view) {
+        Intent intent =  new Intent(this,Graficos.class);
+        startActivity(intent);
+    }
 }
