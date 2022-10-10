@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void navegaGraficos (View view) {
-        Intent intent =  new Intent(this,Graficos.class);
-        startActivity(intent);
+
     }
 }
