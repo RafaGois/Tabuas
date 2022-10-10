@@ -71,8 +71,10 @@ public class AddRegTabuas extends AppCompatActivity {
 
         if (registroAtual != null) {
 
-            if (!data.isEmpty() && !categoria.isEmpty()) {
+            if (!categoria.isEmpty()) {
+
                 Registro registro = new Registro();
+                registro.setId(registroAtual.getId());
                 registro.setDateTime(data);
                 registro.setCategoria(categoria);
                 registro.setValor(valor);

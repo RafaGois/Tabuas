@@ -53,11 +53,11 @@ public class RegistroDAO implements IRegDAO {
         cv.put("valor",registro.getValor());
         cv.put("turno",registro.getTurno());
 
-        String args [] = {String.valueOf(registro.getId())};
+        String args [] = {Integer.toString(registro.getId())};
 
         try {
             escreve.update(RegistroHelper.TABELA_TABUAS,cv,"id=?",args);
-            Log.i("INFO TABLE","Valores salvos");
+            Log.i("INFO TABLE","Valores atualizados");
         } catch (Exception e) {
             Log.e("INFO TABLE","Erro ao atualizar tabela");
             return false;
