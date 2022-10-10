@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.example.tabuas.R;
 import com.example.tabuas.activity.fragmentos.GraphBarra;
-import com.example.tabuas.activity.fragmentos.GraphGenerico;
+import com.example.tabuas.activity.fragmentos.GraphRosquinha;
 import com.example.tabuas.activity.fragmentos.GraphPizza;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
@@ -31,7 +31,7 @@ public class Graph extends AppCompatActivity {
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("Gráfico de Pizza", GraphPizza.class)
                 .add("Gráfico de Barras", GraphBarra.class)
-                .add("Gráfico Genérico", GraphGenerico.class)
+                .add("Gráfico Genérico", GraphRosquinha.class)
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
