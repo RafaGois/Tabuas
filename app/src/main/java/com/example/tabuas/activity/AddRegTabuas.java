@@ -36,6 +36,24 @@ public class AddRegTabuas extends AppCompatActivity {
 
         adicionaSpinners();
 
+        if (registroAtual != null) {
+            spinnerCategoria.setSelection(retornaIndexBusca(arr1,registroAtual.getCategoria()));
+            inputValor.setText(String.valueOf(registroAtual.getValor()));
+            spinnerTurno.setSelection(retornaIndexBusca(arr2,registroAtual.getTurno()));
+        }
+    }
+
+    private int retornaIndexBusca (String [] arr, String busca) {
+
+        int contador = 0;
+
+        for (String s : arr) {
+            if (s.equals(busca)) {
+                return contador;
+            }
+            contador++;
+        }
+        return 0;
     }
 
     public void volta (View view) {
