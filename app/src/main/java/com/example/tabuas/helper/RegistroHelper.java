@@ -14,7 +14,7 @@ public class RegistroHelper extends SQLiteOpenHelper {
     public static String TABELA_TABUAS = "TBL_REG_TABUAS";
 
     private String datas [] = {"29/07/2022","17/09/2022","23/06/2002","09/02/2027","25/01/2022","20/11/2022","22/11/2022","11/09/2022","01/08/2022","12/04/2028"};
-    private String categorias [] = {"1","2","2","2","2","1","1","2","1","1"};
+    private String categorias [] = {"Tábua","Tábua","Ripa","Ripa","Tábua","Ripa","Tábua","Tábua","Tábua","Tábua"};
     private double valores [] = {11.1,10.4,20.5,30.5,11.4,56.8,22.4,10,23,21};
     private String turnos [] = {"1","1","1","1","2","1","1","2","2","2"};
 

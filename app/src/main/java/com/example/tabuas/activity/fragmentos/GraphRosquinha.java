@@ -76,7 +76,7 @@ public class GraphRosquinha extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph_generico, container, false);
+        return inflater.inflate(R.layout.fragment_graph_rosquinha, container, false);
     }
 
     private void agregaGrafico () {
@@ -84,12 +84,13 @@ public class GraphRosquinha extends Fragment {
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
-        for (int i = 0; i < registroDAO.listar().size(); i ++) {
-            PieEntry pieEntry = new PieEntry( i, (float) registroDAO.listar().get(i).getValor());
+        //todo futuramente colocar esse valor o numero de categorias diferentes
+        for (int i = 1; i <= 2; i ++) {
 
+            PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i));
             pieEntries.add(pieEntry);
-        }
 
+        }
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"slaaaa");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
@@ -103,5 +104,25 @@ public class GraphRosquinha extends Fragment {
         pieChart.getDescription().setTextColor(Color.BLUE);
     }
 
+    private double retornaSomaCategoria (int opcao) {
+        RegistroDAO registroDAO = new RegistroDAO(getContext());
 
+        double somaRipa = 0;
+        double somaTabua = 0;
+
+        for (int i = 0; i < registroDAO.listar().size(); i++) {
+            String op = registroDAO.listar().get(i).getCategoria();
+            if (op.equals("Ripa")) {
+                somaRipa += registroDAO.listar().get(i).getValor();
+            } else {
+                somaTabua += registroDAO.listar().get(i).getValor();
+            }
+        }
+
+        if (opcao == 1) {
+            return somaRipa;
+        } else {
+            return somaTabua;
+        }
+    }
 }

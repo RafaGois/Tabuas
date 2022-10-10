@@ -31,7 +31,7 @@ public class Graph extends AppCompatActivity {
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("Gráfico de Pizza", GraphPizza.class)
                 .add("Gráfico de Barras", GraphBarra.class)
-                .add("Gráfico Genérico", GraphRosquinha.class)
+                .add("Gráfico de Rosquinha", GraphRosquinha.class)
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
