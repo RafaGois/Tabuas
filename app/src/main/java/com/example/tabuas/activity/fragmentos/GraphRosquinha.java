@@ -85,7 +85,7 @@ public class GraphRosquinha extends Fragment {
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
 
         //todo futuramente colocar esse valor o numero de categorias diferentes
-        for (int i = 1; i <= 2; i ++) {
+        for (int i = 1; i <= 3; i ++) {
 
             PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i));
             pieEntries.add(pieEntry);
@@ -107,20 +107,25 @@ public class GraphRosquinha extends Fragment {
     private double retornaSomaCategoria (int opcao) {
         RegistroDAO registroDAO = new RegistroDAO(getContext());
 
-        double somaRipa = 0;
+        double somaTora = 0;
+        double somaM3 = 0;
         double somaTabua = 0;
 
         for (int i = 0; i < registroDAO.listar().size(); i++) {
             String op = registroDAO.listar().get(i).getCategoria();
-            if (op.equals("Ripa")) {
-                somaRipa += registroDAO.listar().get(i).getValor();
-            } else {
+            if (op.equals("TORA")) {
+                somaTora += registroDAO.listar().get(i).getValor();
+            } else if (op.equals("METRO CÚBICO")){
+                somaM3 += registroDAO.listar().get(i).getValor();
+            } else if (op.equals("TÁBUA")) {
                 somaTabua += registroDAO.listar().get(i).getValor();
             }
         }
 
         if (opcao == 1) {
-            return somaRipa;
+            return somaTora;
+        } else if (opcao == 2) {
+            return somaM3;
         } else {
             return somaTabua;
         }

@@ -2,9 +2,11 @@ package com.example.tabuas.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -12,6 +14,8 @@ import android.widget.Toast;
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.model.Registro;
+
+import java.util.Calendar;
 
 public class AddRegTabuas extends AppCompatActivity {
 
@@ -41,6 +45,8 @@ public class AddRegTabuas extends AppCompatActivity {
             inputValor.setText(String.valueOf(registroAtual.getValor()));
             spinnerTurno.setSelection(retornaIndexBusca(arr2,registroAtual.getTurno()));
         }
+
+        data();
     }
 
     private int retornaIndexBusca (String [] arr, String busca) {
@@ -122,5 +128,44 @@ public class AddRegTabuas extends AppCompatActivity {
         if (inputValor.getText().toString().isEmpty()) {
             Toast.makeText(this, "Informe todos os valores", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void data () {
+        EditText inputData = findViewById(R.id.inputData);
+        DatePickerDialog.OnDateSetListener setListener;
+
+        Calendar calendar = Calendar.getInstance();
+        final int ano = calendar.get(Calendar.YEAR);
+        final int mes = calendar.get(Calendar.MONTH);
+        final int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        inputData.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(AddRegTabuas.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month + 1;
+
+                        String dataFormatada;
+                        if(day < 10) {
+                            if (month <= 9) {
+                                dataFormatada = year + "-0" + month + "-0" + day;
+                            } else {
+                                dataFormatada = year + "-" + month + "-0" + day;
+                            }
+                        } else {
+                            if (month <= 9) {
+                                dataFormatada = year + "-0" + month + "-" + day;
+                            } else {
+                                dataFormatada = year + "-" + month + "-" + day;
+                            }
+                        }
+                        inputData.setText(dataFormatada);
+                    }
+                },ano,mes,dia);
+                datePickerDialog.show();
+            }
+        });
     }
 }

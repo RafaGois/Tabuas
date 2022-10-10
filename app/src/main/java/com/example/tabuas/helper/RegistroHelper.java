@@ -13,10 +13,10 @@ public class RegistroHelper extends SQLiteOpenHelper {
     public static String NOME_DB = "DB_REG_TABUAS";
     public static String TABELA_TABUAS = "TBL_REG_TABUAS";
 
-    private String datas [] = {"29/07/2022","17/09/2022","23/06/2002","09/02/2027","25/01/2022","20/11/2022","22/11/2022","11/09/2022","01/08/2022","12/04/2028"};
-    private String categorias [] = {"Tábua","Tábua","Ripa","Ripa","Tábua","Ripa","Tábua","Tábua","Tábua","Tábua"};
-    private double valores [] = {11.1,10.4,20.5,30.5,11.4,56.8,22.4,10,23,21};
-    private String turnos [] = {"1","1","1","1","2","1","1","2","2","2"};
+    private String datas [] = {"2022-01-05","2022-01-05","2022-01-05","2022-01-05","2022-01-05","2022-01-05","2022-01-06","2022-01-06","2022-01-06","2022-01-10","2022-01-10","2022-01-10","2022-01-11","2022-01-11","2022-01-11","2022-01-11","2022-01-11","2022-01-11"};
+    private String categorias [] = {"TORA","METRO CÚBICO","TÁBUA","TORA","METRO CÚBICO","TÁBUA","TORA","METRO CÚBICO","TÁBUA","TORAS","METRO CÚBICO","TÁBUAS","TORAS","METRO CÚBICO","TÁBUAS","TORAS","METRO CÚBICO","TÁBUAS"};
+    private double valores [] = {1529,147.62,6152,1477,137.0602,5885,1624,150.06,7449,1024,106.358,5420,1775,164.906,8069,155.612,7381};
+    private String turnos [] = {"1","1","1","2","2","2","2","2","1","1","1","1","1","1","2","2","2"};
 
 
     public RegistroHelper(Context context) {
