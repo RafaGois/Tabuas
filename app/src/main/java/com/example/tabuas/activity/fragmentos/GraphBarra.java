@@ -1,5 +1,6 @@
 package com.example.tabuas.activity.fragmentos;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +11,14 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.tabuas.R;
+import com.example.tabuas.helper.RegistroDAO;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -56,14 +65,42 @@ public class GraphBarra extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
 
-        Toast.makeText(getContext(), "A", Toast.LENGTH_SHORT).show();
+    @Override
+    public void onStart() {
+        super.onStart();
+        agregaGrafico();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         return inflater.inflate(R.layout.fragment_graph_barra, container, false);
+    }
+
+    private void agregaGrafico () {
+        RegistroDAO registroDAO = new RegistroDAO(getContext());
+
+        ArrayList<BarEntry> barEntries = new ArrayList<>();
+
+        for (int i = 0; i < registroDAO.listar().size(); i ++) {
+            BarEntry barEntry = new BarEntry( i, (float) registroDAO.listar().get(i).getValor());
+
+            barEntries.add(barEntry);
+        }
+
+        BarDataSet barDataSet = new BarDataSet(barEntries,"Valores");
+        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+
+        BarChart barChart = (BarChart) getView().findViewById(R.id.graficoBarras);
+
+        barChart.setData(new BarData(barDataSet));
+
+        barChart.animateY(6000);
+
+        barChart.getDescription().setText("Descricao");
+        barChart.getDescription().setTextColor(Color.BLUE);
     }
 }
