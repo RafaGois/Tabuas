@@ -99,12 +99,13 @@ public class RegistroDAO implements IRegDAO {
         while (c.moveToNext()) {
             Registro registro = new Registro();
 
-            Long id = c.getLong(posicaoId);
+            int id = c.getInt(posicaoId);
             String data = c.getString(posicaoData);
             String categoria = c.getString(posicaoCategoria);
             double valor = c.getDouble(posicaoValor);
             String turno = c.getString(posicaoTurno);
 
+            registro.setId(id);
             registro.setDateTime(data);
             registro.setCategoria(categoria);
             registro.setValor(valor);

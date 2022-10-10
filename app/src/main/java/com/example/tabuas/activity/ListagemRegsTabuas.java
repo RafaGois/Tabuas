@@ -60,7 +60,7 @@ public class ListagemRegsTabuas extends AppCompatActivity {
                         AlertDialog.Builder dialog = new AlertDialog.Builder(ListagemRegsTabuas.this);
 
                         dialog.setTitle("Confirmar exclusão");
-                        dialog.setMessage("Deseja excluir a tarefa :"+ registroSelecionado.getValor()+" ?");
+                        dialog.setMessage("Deseja excluir a tarefa :"+ registroSelecionado.getId()+" ?");
                         dialog.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
