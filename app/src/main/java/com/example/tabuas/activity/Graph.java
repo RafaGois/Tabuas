@@ -7,10 +7,13 @@ import android.os.Bundle;
 
 import com.example.tabuas.R;
 import com.example.tabuas.activity.fragmentos.GraphBarra;
+import com.example.tabuas.activity.fragmentos.GraphGenerico;
 import com.example.tabuas.activity.fragmentos.GraphPizza;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
+
+import java.util.Objects;
 
 public class Graph extends AppCompatActivity {
 
@@ -22,10 +25,13 @@ public class Graph extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_graph);
 
+        getSupportActionBar().setElevation(0);
+
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("Gráfico de Pizza", GraphPizza.class)
                 .add("Gráfico de Barras", GraphBarra.class)
+                .add("Gráfico Genérico", GraphGenerico.class)
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);

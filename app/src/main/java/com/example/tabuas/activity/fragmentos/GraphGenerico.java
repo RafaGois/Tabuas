@@ -7,16 +7,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.tabuas.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GraphBarra#newInstance} factory method to
+ * Use the {@link GraphGenerico#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GraphBarra extends Fragment {
+public class GraphGenerico extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -27,7 +26,7 @@ public class GraphBarra extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public GraphBarra() {
+    public GraphGenerico() {
         // Required empty public constructor
     }
 
@@ -37,11 +36,11 @@ public class GraphBarra extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GraphBarra.
+     * @return A new instance of fragment GraphGenerico.
      */
     // TODO: Rename and change types and number of parameters
-    public static GraphBarra newInstance(String param1, String param2) {
-        GraphBarra fragment = new GraphBarra();
+    public static GraphGenerico newInstance(String param1, String param2) {
+        GraphGenerico fragment = new GraphGenerico();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -56,14 +55,12 @@ public class GraphBarra extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-        Toast.makeText(getContext(), "A", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph_barra, container, false);
+        return inflater.inflate(R.layout.fragment_graph_generico, container, false);
     }
 }
