@@ -92,21 +92,25 @@ public class GraphRosquinha extends Fragment {
             pieEntries.add(pieEntry);
         }
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"Descricao");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setValueTextSize(16);
+
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
+
+        pieChart.setUsePercentValues(true);
 
         pieChart.setData(new PieData(pieDataSet));
 
         pieChart.animateY(6000);
 
         pieChart.getDescription().setText("Gráfico de Rosquinha");
-        pieChart.getDescription().setTextSize(26);
+        pieChart.getDescription().setTextSize(22);
         pieChart.getDescription().setTextColor(Color.GRAY);
 
-        pieDataSet.setDrawValues(true);//olhar iso
-
+        //pieDataSet.setDrawValues(true);//olhar iso
+        //pieChart.setUsePercentValues(true);
     }
 
     private double retornaSomaCategoria (int opcao) {

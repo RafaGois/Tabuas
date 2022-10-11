@@ -95,6 +95,8 @@ public class GraphBarra extends Fragment {
         BarDataSet barDataSet = new BarDataSet(barEntries,"Valores");
         barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
+        barDataSet.setValueTextSize(14);
+
         BarChart barChart = (BarChart) getView().findViewById(R.id.graficoBarras);
 
         barChart.setData(new BarData(barDataSet));
