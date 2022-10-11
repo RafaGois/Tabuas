@@ -1,6 +1,7 @@
 package com.example.tabuas.activity.fragmentos;
 
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -89,9 +90,9 @@ public class GraphRosquinha extends Fragment {
 
             PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i));
             pieEntries.add(pieEntry);
-
         }
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"slaaaa");
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
         pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
@@ -100,8 +101,12 @@ public class GraphRosquinha extends Fragment {
 
         pieChart.animateY(6000);
 
-        pieChart.getDescription().setText("Descricao");
-        pieChart.getDescription().setTextColor(Color.BLUE);
+        pieChart.getDescription().setText("Gráfico de Rosquinha");
+        pieChart.getDescription().setTextSize(26);
+        pieChart.getDescription().setTextColor(Color.GRAY);
+
+        pieDataSet.setDrawValues(true);//olhar iso
+
     }
 
     private double retornaSomaCategoria (int opcao) {
