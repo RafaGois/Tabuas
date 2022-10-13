@@ -87,7 +87,7 @@ public class GraphBarra extends Fragment {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
         for (int i = 0; i < registroDAO.listar().size(); i ++) {
-            BarEntry barEntry = new BarEntry( i, (float) registroDAO.listar().get(i).getValor());
+            BarEntry barEntry = new BarEntry( i, (float) registroDAO.listar().get(i).getValor(),registroDAO.listar().get(i).getCategoria());
 
             barEntries.add(barEntry);
         }
