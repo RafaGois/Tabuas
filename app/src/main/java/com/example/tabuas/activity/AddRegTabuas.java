@@ -19,13 +19,14 @@ import java.util.Calendar;
 
 public class AddRegTabuas extends AppCompatActivity {
 
-    private String [] arr1 = {"Tábua","Ripa"};
-    private String [] arr2 = {"Diurno","Noturno"};
+    private String [] arr1 = {"TORA","METRO CÚBICO","TÁBUA"};
+    private String [] arr2 = {"1","2"};
 
     private Registro registroAtual;
 
     Spinner spinnerCategoria,spinnerTurno;
     EditText inputValor;
+    EditText inputData;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class AddRegTabuas extends AppCompatActivity {
         setContentView(R.layout.activity_add_reg_tabuas);
 
         inputValor = findViewById(R.id.inputValor);
+        inputData = findViewById(R.id.inputData);
         spinnerCategoria = findViewById(R.id.spinnerCategoria);
         spinnerTurno = findViewById(R.id.spinnerTurno);
 
@@ -68,52 +70,56 @@ public class AddRegTabuas extends AppCompatActivity {
 
     public void adiciona (View view) {
 
-        RegistroDAO dao = new RegistroDAO(getApplicationContext());
 
-        String data = "08/10/2022";
-        String categoria = spinnerCategoria.getSelectedItem().toString();
-        double valor = Double.parseDouble(inputValor.getText().toString());
-        String turno = spinnerTurno.getSelectedItem().toString();
 
-        if (registroAtual != null) {
+        if (!inputValor.getText().toString().isEmpty() && !inputData.getText().toString().isEmpty()) {
 
-            if (!categoria.isEmpty()) {
+            RegistroDAO dao = new RegistroDAO(getApplicationContext());
 
-                Registro registro = new Registro();
-                registro.setId(registroAtual.getId());
-                registro.setDateTime(data);
-                registro.setCategoria(categoria);
-                registro.setValor(valor);
-                registro.setTurno(turno);
+            String data =  inputData.getText().toString();
+            String categoria = spinnerCategoria.getSelectedItem().toString();
+            double valor = Double.parseDouble(inputValor.getText().toString());
+            String turno = spinnerTurno.getSelectedItem().toString();
 
-                if (dao.atualizar(registro)) {
-                    Toast.makeText(this, "Valor atualizado com sucesso", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+            if (registroAtual != null) {
+                if (!categoria.isEmpty()) {
+
+                    Registro registro = new Registro();
+                    registro.setId(registroAtual.getId());
+                    registro.setDateTime(data);
+                    registro.setCategoria(categoria);
+                    registro.setValor(valor);
+                    registro.setTurno(turno);
+
+                    if (dao.atualizar(registro)) {
+                        Toast.makeText(this, "Valor atualizado com sucesso", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            } else {
+
+                if (!data.isEmpty()) {
+                    Registro registro = new Registro();
+
+                    registro.setDateTime(data);
+                    registro.setCategoria(categoria);
+                    registro.setValor(valor);
+                    registro.setTurno(turno);
+
+                    if (dao.salvar(registro)) {
+                        Toast.makeText(this, "Registro salvo", Toast.LENGTH_SHORT).show();
+                        finish();
+                    } else {
+                        Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
-
         } else {
-
-            if (!data.isEmpty()) {
-                Registro registro = new Registro();
-
-                registro.setDateTime(data);
-                registro.setCategoria(categoria);
-                registro.setValor(valor);
-                registro.setTurno(turno);
-
-                if (dao.salvar(registro)) {
-                    Toast.makeText(this, "Registro salvo", Toast.LENGTH_SHORT).show();
-                    finish();
-                } else {
-                    Toast.makeText(this, "Erro", Toast.LENGTH_SHORT).show();
-                }
-
-            }
+            Toast.makeText(this, "Informe todos os campos", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void adicionaSpinners () {
@@ -150,15 +156,15 @@ public class AddRegTabuas extends AppCompatActivity {
                         String dataFormatada;
                         if(day < 10) {
                             if (month <= 9) {
-                                dataFormatada = year + "-0" + month + "-0" + day;
+                                dataFormatada = day + "-0" + month + "-0" + year;
                             } else {
-                                dataFormatada = year + "-" + month + "-0" + day;
+                                dataFormatada = day + "-" + month + "-0" + year;
                             }
                         } else {
                             if (month <= 9) {
-                                dataFormatada = year + "-0" + month + "-" + day;
+                                dataFormatada = day + "-0" + month + "-" + year;
                             } else {
-                                dataFormatada = year + "-" + month + "-" + day;
+                                dataFormatada = day + "-" + month + "-" + year;
                             }
                         }
                         inputData.setText(dataFormatada);

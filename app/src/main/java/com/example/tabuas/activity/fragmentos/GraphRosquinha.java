@@ -88,18 +88,17 @@ public class GraphRosquinha extends Fragment {
         //todo futuramente colocar esse valor o numero de categorias diferentes
         for (int i = 1; i <= 3; i ++) {
 
-            PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i));
+            PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i),retornaCategoria(i));
             pieEntries.add(pieEntry);
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"Descricao");
-        pieDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        pieDataSet.setColors(ColorTemplate.VORDIPLOM_COLORS);
         pieDataSet.setValueTextSize(16);
-
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
 
-        pieChart.setUsePercentValues(true);
+        //pieChart.setUsePercentValues(true);
 
         pieChart.setData(new PieData(pieDataSet));
 
@@ -109,8 +108,6 @@ public class GraphRosquinha extends Fragment {
         pieChart.getDescription().setTextSize(22);
         pieChart.getDescription().setTextColor(Color.GRAY);
 
-        //pieDataSet.setDrawValues(true);//olhar iso
-        //pieChart.setUsePercentValues(true);
     }
 
     private double retornaSomaCategoria (int opcao) {
@@ -137,6 +134,17 @@ public class GraphRosquinha extends Fragment {
             return somaM3;
         } else {
             return somaTabua;
+        }
+    }
+
+    private String retornaCategoria (int opcao) {
+
+        if (opcao == 1) {
+            return "Tora";
+        } else if (opcao == 2) {
+            return "Metro cúbico";
+        } else {
+            return "Tábua";
         }
     }
 }
