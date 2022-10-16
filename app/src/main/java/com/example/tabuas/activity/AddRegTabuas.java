@@ -131,12 +131,6 @@ public class AddRegTabuas extends AppCompatActivity {
         spinnerTurno.setAdapter(adapterSpinner2);
     }
 
-    public void salva (View view) {
-        if (inputValor.getText().toString().isEmpty()) {
-            Toast.makeText(this, "Informe todos os valores", Toast.LENGTH_SHORT).show();
-        }
-    }
-
     private void data () {
         EditText inputData = findViewById(R.id.inputData);
         DatePickerDialog.OnDateSetListener setListener;

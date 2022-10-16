@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
@@ -93,6 +94,14 @@ public class GraphPizza extends Fragment {
                 }
             }
         }
+
+        TextView txtMCubico = getView().findViewById(R.id.txtMCubico);
+        TextView txtTabuas = getView().findViewById(R.id.txtTabua);
+        TextView txtTora = getView().findViewById(R.id.txtTora);
+
+        txtMCubico.setText(Double.toString(totalMetroCubico));
+        txtTabuas.setText(Double.toString(totalTabuas));
+        txtTora.setText(Double.toString(totalToras));
 
     }
 }

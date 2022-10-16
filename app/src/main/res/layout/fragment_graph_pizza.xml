@@ -123,7 +123,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txtMCubico"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
@@ -138,7 +138,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/txtTabua"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
@@ -153,7 +153,7 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/textView8"
+                android:id="@+id/txtTora"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
