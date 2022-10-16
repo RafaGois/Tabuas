@@ -29,9 +29,9 @@ public class Graph extends AppCompatActivity {
 
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("Gráfico de Pizza", GraphPizza.class)
-                .add("Gráfico de Barras", GraphBarra.class)
-                .add("Gráfico de Rosquinha", GraphRosquinha.class)
+                .add("Registro por Dia", GraphPizza.class)
+                .add("Relatório por Registro", GraphBarra.class)
+                .add("Total por Categoria", GraphRosquinha.class)
                 .create());
 
         ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
