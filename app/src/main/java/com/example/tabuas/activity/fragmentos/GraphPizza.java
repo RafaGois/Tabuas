@@ -13,7 +13,6 @@ import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
-import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 
@@ -29,7 +28,7 @@ public class GraphPizza extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String dataSelecionada = "22-01-05";
+    private String dataSelecionada = "2022-01-05";
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -67,8 +66,14 @@ public class GraphPizza extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
 
         agregaVals();
+        atribui();
     }
 
     @Override
@@ -84,7 +89,7 @@ public class GraphPizza extends Fragment {
         ArrayList<Registro> registros = (ArrayList<Registro>) registroDAO.listar();
 
         for (Registro reg : registros) {
-            if (reg.getDateTime().equals(dataSelecionada)) {
+            if (reg.getDateTime().trim().equals(dataSelecionada)) {
                 if (reg.getCategoria().equals(TiposCategorias.METRO_CUBICO.getValor())) {
                     totalMetroCubico += reg.getValor();
                 } else if (reg.getCategoria().equals(TiposCategorias.TABUA.getValor())) {
@@ -94,14 +99,20 @@ public class GraphPizza extends Fragment {
                 }
             }
         }
+    }
 
-        TextView txtMCubico = getView().findViewById(R.id.txtMCubico);
-        TextView txtTabuas = getView().findViewById(R.id.txtTabua);
-        TextView txtTora = getView().findViewById(R.id.txtTora);
+    private void atribui () {
 
-        txtMCubico.setText(Double.toString(totalMetroCubico));
-        txtTabuas.setText(Double.toString(totalTabuas));
-        txtTora.setText(Double.toString(totalToras));
+        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
+        txtDia.setText("Total produzido no dia "+ dataSelecionada);
 
+
+        TextView txtMCubico = (TextView) getView().findViewById(R.id.txtCubico);
+        TextView txtTabuas = (TextView) getView().findViewById(R.id.txtTabua);
+        TextView txtTora = (TextView) getView().findViewById(R.id.txtTora);
+
+        txtMCubico.setText("R$ "+String.format("%.2f", totalMetroCubico));
+        txtTabuas.setText("R$ "+String.format("%.2f", totalTabuas));
+        txtTora.setText("R$ "+String.format("%.2f", totalToras));
     }
 }

@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#56AA37"
+                android:background="#549845"
                 android:gravity="center"
                 android:text="Metro cúbico" />
 
@@ -75,7 +75,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#3B872A"
+                android:background="#549845"
                 android:gravity="center"
                 android:text="Tábua" />
 
@@ -91,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:background="#579F4A"
+                android:background="#549845"
                 android:gravity="center"
                 android:text="Tora" />
 
@@ -123,11 +123,11 @@
                 android:background="?android:attr/listDivider" />
 
             <TextView
-                android:id="@+id/txtMCubico"
+                android:id="@+id/txtCubico"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:background="#56AA37"
+                android:background="#BF4F953F"
                 android:gravity="center" />
 
             <View
@@ -142,7 +142,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:background="#3B872A"
+                android:background="#BF4F953F"
                 android:gravity="center" />
 
             <View
@@ -157,7 +157,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:layout_weight="1"
-                android:background="#579F4A"
+                android:background="#BF4F953F"
                 android:gravity="center" />
 
             <View
@@ -176,7 +176,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/txtDia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
