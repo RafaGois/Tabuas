@@ -9,6 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tabuas.R;
+import com.example.tabuas.helper.RegistroDAO;
+import com.example.tabuas.model.Registro;
+import com.github.mikephil.charting.data.PieEntry;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,6 +26,11 @@ public class GraphPizza extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+
+    private String dataSelecionada = "";
+    private double totalMetroCubico;
+    private double totalTabuas;
+    private double totalToras;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -62,5 +72,24 @@ public class GraphPizza extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_graph_pizza, container, false);
+    }
+
+    private void agregaVals () {
+        RegistroDAO registroDAO = new RegistroDAO(getContext());
+
+        ArrayList<Registro> registros = new ArrayList<>();
+
+        for (Registro reg : registros) {
+            if (reg.getDateTime().equals(dataSelecionada)) {
+                if (reg.getCategoria().equals("")) {
+                    totalMetroCubico += reg.getValor();
+                } else if (reg.getCategoria().equals("")) {
+                    totalTabuas += reg.getValor();
+                } else if (reg.getCategoria().equals("")) {
+                    totalToras += reg.getValor();
+                }
+            }
+        }
+
     }
 }
