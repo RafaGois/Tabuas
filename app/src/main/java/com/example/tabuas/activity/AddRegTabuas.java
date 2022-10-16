@@ -13,13 +13,14 @@ import android.widget.Toast;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
+import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
 
 import java.util.Calendar;
 
 public class AddRegTabuas extends AppCompatActivity {
 
-    private String [] arr1 = {"TORA","METRO CÚBICO","TÁBUA"};
+    private String [] arr1 = {TiposCategorias.TORA.getValor(),TiposCategorias.METRO_CUBICO.getValor(),TiposCategorias.TABUA.getValor()};
     private String [] arr2 = {"1","2"};
 
     private Registro registroAtual;

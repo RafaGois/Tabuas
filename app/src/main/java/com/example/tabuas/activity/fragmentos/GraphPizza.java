@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
+import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
 import com.github.mikephil.charting.data.PieEntry;
 
@@ -81,11 +82,11 @@ public class GraphPizza extends Fragment {
 
         for (Registro reg : registros) {
             if (reg.getDateTime().equals(dataSelecionada)) {
-                if (reg.getCategoria().equals("")) {
+                if (reg.getCategoria().equals(TiposCategorias.METRO_CUBICO.getValor())) {
                     totalMetroCubico += reg.getValor();
-                } else if (reg.getCategoria().equals("")) {
+                } else if (reg.getCategoria().equals(TiposCategorias.TABUA.getValor())) {
                     totalTabuas += reg.getValor();
-                } else if (reg.getCategoria().equals("")) {
+                } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
                     totalToras += reg.getValor();
                 }
             }

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
+import com.example.tabuas.helper.TiposCategorias;
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
@@ -121,11 +122,11 @@ public class GraphRosquinha extends Fragment {
 
         for (int i = 0; i < registroDAO.listar().size(); i++) {
             String op = registroDAO.listar().get(i).getCategoria();
-            if (op.equals("TORA")) {
+            if (op.equals(TiposCategorias.TORA.getValor())) {
                 somaTora += registroDAO.listar().get(i).getValor();
-            } else if (op.equals("METRO CÚBICO")){
+            } else if (op.equals(TiposCategorias.METRO_CUBICO.getValor())){
                 somaM3 += registroDAO.listar().get(i).getValor();
-            } else if (op.equals("TÁBUA")) {
+            } else if (op.equals(TiposCategorias.TABUA.getValor())) {
                 somaTabua += registroDAO.listar().get(i).getValor();
             }
         }
@@ -142,11 +143,11 @@ public class GraphRosquinha extends Fragment {
     private String retornaCategoria (int opcao) {
 
         if (opcao == 1) {
-            return "Tora";
+            return TiposCategorias.TORA.getValor();
         } else if (opcao == 2) {
-            return "Metro cúbico";
+            return TiposCategorias.METRO_CUBICO.getValor();
         } else {
-            return "Tábua";
+            return TiposCategorias.TABUA.getValor();
         }
     }
 }
