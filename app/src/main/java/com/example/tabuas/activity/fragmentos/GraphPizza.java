@@ -28,7 +28,7 @@ public class GraphPizza extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String dataSelecionada = "";
+    private String dataSelecionada = "22-01-05";
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -66,6 +66,8 @@ public class GraphPizza extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+        agregaVals();
     }
 
     @Override
@@ -78,7 +80,7 @@ public class GraphPizza extends Fragment {
     private void agregaVals () {
         RegistroDAO registroDAO = new RegistroDAO(getContext());
 
-        ArrayList<Registro> registros = new ArrayList<>();
+        ArrayList<Registro> registros = (ArrayList<Registro>) registroDAO.listar();
 
         for (Registro reg : registros) {
             if (reg.getDateTime().equals(dataSelecionada)) {
