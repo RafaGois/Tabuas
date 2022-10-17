@@ -136,6 +136,10 @@ public class GraphRegMes extends Fragment {
         tMc.setText("R$ "+String.format("%.2f", totalMetroCubico));
         txtabuas.setText("R$ "+String.format("%.2f", totalTabuas));
         txtoras.setText("R$ "+String.format("%.2f", totalToras));
+
+        TextView txtTotal = getView().findViewById(R.id.txtRegMesTotal);
+        txtTotal.setText("Total: R$ "+ String.format("%.2f", (totalTabuas + totalToras + totalMetroCubico)));
+
     }
 
     private void listenerSpinner () {

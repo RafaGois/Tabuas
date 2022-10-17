@@ -161,6 +161,9 @@ public class GraphRegDia extends Fragment {
         txtMCubico.setText("R$ "+String.format("%.2f", totalMetroCubico));
         txtTabuas.setText("R$ "+String.format("%.2f", totalTabuas));
         txtTora.setText("R$ "+String.format("%.2f", totalToras));
+
+        TextView txtTotal = getView().findViewById(R.id.txtRegDiaTotal);
+        txtTotal.setText("Total: R$ "+ String.format("%.2f", (totalTabuas + totalToras + totalMetroCubico)));
     }
 
     private void data () {

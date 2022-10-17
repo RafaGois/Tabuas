@@ -74,7 +74,8 @@
                 android:layout_weight="1"
                 android:background="#90B77D"
                 android:gravity="center"
-                android:text="Metros cúbicos" />
+                android:text="Metros cúbicos"
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/divider21"
@@ -90,7 +91,8 @@
                 android:layout_weight="1"
                 android:background="#90B77D"
                 android:gravity="center"
-                android:text="Tábuas" />
+                android:text="Tábuas"
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/divider20"
@@ -106,7 +108,8 @@
                 android:layout_weight="1"
                 android:background="#90B77D"
                 android:gravity="center"
-                android:text="Toras" />
+                android:text="Toras"
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/divider19"
@@ -183,6 +186,41 @@
 
         <View
             android:id="@+id/divider13"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/divider36"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="?android:attr/listDivider" />
+
+            <TextView
+                android:id="@+id/txtRegDiaTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#EDA1B77D"
+                android:gravity="center"
+                android:text="TextView" />
+
+            <View
+                android:id="@+id/divider37"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="?android:attr/listDivider" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider35"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="?android:attr/listDivider" />
