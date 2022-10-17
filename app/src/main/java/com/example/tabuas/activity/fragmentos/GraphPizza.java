@@ -1,12 +1,19 @@
 package com.example.tabuas.activity.fragmentos;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.tabuas.R;
@@ -15,6 +22,7 @@ import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,7 +36,7 @@ public class GraphPizza extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String dataSelecionada = "2022-01-05";
+    private String dataSelecionada = "";
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -74,6 +82,10 @@ public class GraphPizza extends Fragment {
 
         agregaVals();
         atribui();
+
+        data();
+
+        listenerData();
     }
 
     @Override
@@ -114,5 +126,72 @@ public class GraphPizza extends Fragment {
         txtMCubico.setText("R$ "+String.format("%.2f", totalMetroCubico));
         txtTabuas.setText("R$ "+String.format("%.2f", totalTabuas));
         txtTora.setText("R$ "+String.format("%.2f", totalToras));
+    }
+
+    private void data () {
+        EditText inputDate = getView().findViewById(R.id.inputDataBusca);
+        DatePickerDialog.OnDateSetListener setListener;
+
+        Calendar calendar = Calendar.getInstance();
+        final int ano = calendar.get(Calendar.YEAR);
+        final int mes = calendar.get(Calendar.MONTH);
+        final int dia = calendar.get(Calendar.DAY_OF_MONTH);
+
+        inputDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        getContext(), new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+                        month = month + 1;
+
+                        String date = day + "/" + month + "/" + year;
+
+                        String dataFormatada;
+                        if(day < 10) {
+                            if (month < 10) {
+                                dataFormatada = year + "-0" + month + "-0" + day;
+                            } else {
+                                dataFormatada = year + "-" + month + "-0" + day;
+                            }
+                        } else {
+                            if (month < 10) {
+                                dataFormatada = year + "-0" + month + "-" + day;
+                            } else {
+                                dataFormatada = year + "-" + month + "-" + day;
+                            }
+                        }
+                        inputDate.setText(dataFormatada);
+                        dataSelecionada = dataFormatada;
+                    }
+                }, ano, mes, dia);
+                datePickerDialog.show();
+            }
+        });
+    }
+
+    private void listenerData () {
+        EditText inputDate = getView().findViewById(R.id.inputDataBusca);
+
+        inputDate.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
+                if(keyCode == KeyEvent.KEYCODE_ENTER) {
+                    if(!inputDate.getText().toString().equals("")) {
+                        agregaVals();
+                        atribui();
+
+                        InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
+                                InputMethodManager.HIDE_NOT_ALWAYS);
+                    }
+                    return true;
+                }
+                return false;
+            }
+        });
+
+
     }
 }

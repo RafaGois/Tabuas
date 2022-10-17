@@ -61,7 +61,7 @@
                 android:layout_weight="1"
                 android:background="#549845"
                 android:gravity="center"
-                android:text="Metro cúbico" />
+                android:text="Metros cúbicos" />
 
             <View
                 android:id="@+id/divider21"
@@ -77,7 +77,7 @@
                 android:layout_weight="1"
                 android:background="#549845"
                 android:gravity="center"
-                android:text="Tábua" />
+                android:text="Tábuas" />
 
             <View
                 android:id="@+id/divider20"
@@ -93,7 +93,7 @@
                 android:layout_weight="1"
                 android:background="#549845"
                 android:gravity="center"
-                android:text="Tora" />
+                android:text="Toras" />
 
             <View
                 android:id="@+id/divider19"
