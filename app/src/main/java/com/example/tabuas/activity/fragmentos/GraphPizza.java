@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tabuas.R;
@@ -86,6 +87,8 @@ public class GraphPizza extends Fragment {
         data();
 
         listenerData();
+
+        showVals();
     }
 
     @Override
@@ -102,6 +105,7 @@ public class GraphPizza extends Fragment {
 
         for (Registro reg : registros) {
             if (reg.getDateTime().trim().equals(dataSelecionada)) {
+
                 if (reg.getCategoria().equals(TiposCategorias.METRO_CUBICO.getValor())) {
                     totalMetroCubico += reg.getValor();
                 } else if (reg.getCategoria().equals(TiposCategorias.TABUA.getValor())) {
@@ -111,6 +115,34 @@ public class GraphPizza extends Fragment {
                 }
             }
         }
+    }
+
+    private void showVals () {
+        if (totalToras != 0 || totalTabuas != 0 || totalMetroCubico != 0) {
+            mostra();
+        } else {
+            oculta();
+        }
+    }
+
+    private void mostra () {
+
+        LinearLayout ll = getView().findViewById(R.id.tabelaValores);
+        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
+
+        ll.setVisibility(View.VISIBLE);
+        txtDia.setVisibility(View.VISIBLE);
+    }
+
+    private void oculta () {
+
+        LinearLayout ll = getView().findViewById(R.id.tabelaValores);
+        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
+
+        ll.setVisibility(View.GONE);
+        txtDia.setVisibility(View.GONE);
+
+        //todo tambem mostrar "nenhum valor encontrado"
     }
 
     private void atribui () {
@@ -179,8 +211,10 @@ public class GraphPizza extends Fragment {
             public boolean onKey(View view, int keyCode, KeyEvent keyEvent) {
                 if(keyCode == KeyEvent.KEYCODE_ENTER) {
                     if(!inputDate.getText().toString().equals("")) {
+
                         agregaVals();
                         atribui();
+                        showVals();
 
                         InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
