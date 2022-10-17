@@ -7,11 +7,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
+import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
 
 import java.util.ArrayList;
@@ -34,6 +37,11 @@ public class GraphRegMes extends Fragment {
     private String mParam2;
 
     private String [] meses = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
+
+    private int mesSelecionado = 0;
+    private double totalMetroCubico;
+    private double totalTabuas;
+    private double totalToras;
 
     public GraphRegMes() {
         // Required empty public constructor
@@ -73,6 +81,7 @@ public class GraphRegMes extends Fragment {
         agregaSpinner();
         vals();
 
+        listenerSpinner();
     }
 
     @Override
@@ -88,7 +97,21 @@ public class GraphRegMes extends Fragment {
         List<Registro> registros = registroDAO.listar();
 
         for (Registro reg : registros) {
+            if (cortaData(reg.getDateTime()).equals(mesSelecionado)) {
 
+                if (reg.getCategoria().equals(TiposCategorias.METRO_CUBICO.getValor())) {
+                    totalMetroCubico += reg.getValor();
+                } else if (reg.getCategoria().equals(TiposCategorias.TABUA.getValor())) {
+                    totalTabuas += reg.getValor();
+                } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
+                    totalToras += reg.getValor();
+                }
+
+            } else {
+                totalMetroCubico = 0;
+                totalTabuas = 0;
+                totalToras = 0;
+            }
         }
     }
 
@@ -96,5 +119,30 @@ public class GraphRegMes extends Fragment {
         Spinner spinner = getView().findViewById(R.id.spinnerMeses);
         ArrayAdapter<String> adapterSpinner = new ArrayAdapter<>(getContext(),android.R.layout.simple_list_item_1,meses);
         spinner.setAdapter(adapterSpinner);
+    }
+
+    private String cortaData (String data) {
+        if (data != null) {
+            return data.substring(3, 6);
+        } else {
+            return "";
+        }
+    }
+
+    private void listenerSpinner () {
+        Spinner spinner = getView().findViewById(R.id.spinnerMeses);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                mesSelecionado = i + 1;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
     }
 }
