@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.tabuas.R;
@@ -38,7 +39,7 @@ public class GraphRegMes extends Fragment {
 
     private String [] meses = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
 
-    private int mesSelecionado = 0;
+    private String mesSelecionado = "01";
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -79,9 +80,10 @@ public class GraphRegMes extends Fragment {
         super.onStart();
 
         agregaSpinner();
-        vals();
-
         listenerSpinner();
+
+        vals();
+        agregaVals();
     }
 
     @Override
@@ -94,7 +96,7 @@ public class GraphRegMes extends Fragment {
     private void vals () {
         RegistroDAO registroDAO = new RegistroDAO(getContext());
 
-        List<Registro> registros = registroDAO.listar();
+        ArrayList<Registro> registros = (ArrayList<Registro>) registroDAO.listar();
 
         for (Registro reg : registros) {
             if (cortaData(reg.getDateTime()).equals(mesSelecionado)) {
@@ -107,10 +109,6 @@ public class GraphRegMes extends Fragment {
                     totalToras += reg.getValor();
                 }
 
-            } else {
-                totalMetroCubico = 0;
-                totalTabuas = 0;
-                totalToras = 0;
             }
         }
     }
@@ -123,10 +121,21 @@ public class GraphRegMes extends Fragment {
 
     private String cortaData (String data) {
         if (data != null) {
-            return data.substring(3, 6);
+            return data.substring(5,7);
         } else {
             return "";
         }
+    }
+
+    private void agregaVals () {
+
+        TextView tMc = getView().findViewById(R.id.textView12);
+        TextView txtabuas = getView().findViewById(R.id.textView13);
+        TextView txtoras = getView().findViewById(R.id.textView14);
+
+        tMc.setText("R$ "+String.format("%.2f", totalMetroCubico));
+        txtabuas.setText("R$ "+String.format("%.2f", totalTabuas));
+        txtoras.setText("R$ "+String.format("%.2f", totalToras));
     }
 
     private void listenerSpinner () {
@@ -135,7 +144,18 @@ public class GraphRegMes extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                mesSelecionado = i + 1;
+
+                totalMetroCubico = 0;
+                totalTabuas = 0;
+                totalToras = 0;
+
+                if ((i + 1) <= 9) {
+                    mesSelecionado = "0" + (i + 1);
+                } else {
+                    mesSelecionado = Integer.toString(i + 1);
+                }
+                vals();
+                agregaVals();
             }
 
             @Override
