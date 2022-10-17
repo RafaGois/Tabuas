@@ -7,8 +7,9 @@ import android.os.Bundle;
 
 import com.example.tabuas.R;
 import com.example.tabuas.activity.fragmentos.GraphBarra;
+import com.example.tabuas.activity.fragmentos.GraphRegMes;
 import com.example.tabuas.activity.fragmentos.GraphRosquinha;
-import com.example.tabuas.activity.fragmentos.GraphPizza;
+import com.example.tabuas.activity.fragmentos.GraphRegDia;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;
@@ -29,7 +30,8 @@ public class Graph extends AppCompatActivity {
 
         FragmentPagerItemAdapter adapter = new FragmentPagerItemAdapter(
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
-                .add("Registro por Dia", GraphPizza.class)
+                .add("Registro por Dia", GraphRegDia.class)
+                .add("Registro por Mês", GraphRegMes.class)
                 .add("Relatório por Registro", GraphBarra.class)
                 .add("Total por Categoria", GraphRosquinha.class)
                 .create());

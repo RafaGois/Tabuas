@@ -1,6 +1,5 @@
 package com.example.tabuas.activity.fragmentos;
 
-import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -27,10 +26,10 @@ import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link GraphPizza#newInstance} factory method to
+ * Use the {@link GraphRegDia#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GraphPizza extends Fragment {
+public class GraphRegDia extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -46,7 +45,7 @@ public class GraphPizza extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public GraphPizza() {
+    public GraphRegDia() {
         // Required empty public constructor
     }
 
@@ -59,8 +58,8 @@ public class GraphPizza extends Fragment {
      * @return A new instance of fragment GraphPizza.
      */
     // TODO: Rename and change types and number of parameters
-    public static GraphPizza newInstance(String param1, String param2) {
-        GraphPizza fragment = new GraphPizza();
+    public static GraphRegDia newInstance(String param1, String param2) {
+        GraphRegDia fragment = new GraphRegDia();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -95,7 +94,7 @@ public class GraphPizza extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_graph_pizza, container, false);
+        return inflater.inflate(R.layout.fragment_graph_reg_dia, container, false);
     }
 
     private void agregaVals () {
