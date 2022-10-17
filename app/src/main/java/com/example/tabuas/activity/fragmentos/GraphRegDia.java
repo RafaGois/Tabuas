@@ -168,7 +168,6 @@ public class GraphRegDia extends Fragment {
 
     private void data () {
         EditText inputDate = getView().findViewById(R.id.inputDataBusca);
-        DatePickerDialog.OnDateSetListener setListener;
 
         Calendar calendar = Calendar.getInstance();
         final int ano = calendar.get(Calendar.YEAR);

@@ -47,6 +47,7 @@ public class AddRegTabuas extends AppCompatActivity {
             spinnerCategoria.setSelection(retornaIndexBusca(arr1,registroAtual.getCategoria()));
             inputValor.setText(String.valueOf(registroAtual.getValor()));
             spinnerTurno.setSelection(retornaIndexBusca(arr2,registroAtual.getTurno()));
+            inputData.setText(registroAtual.getDateTime());
         }
 
         data();
