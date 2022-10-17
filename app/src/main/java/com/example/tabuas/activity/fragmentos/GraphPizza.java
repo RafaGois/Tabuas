@@ -113,6 +113,10 @@ public class GraphPizza extends Fragment {
                 } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
                     totalToras += reg.getValor();
                 }
+            } else {
+                totalMetroCubico = 0;
+                totalTabuas = 0;
+                totalToras = 0;
             }
         }
     }

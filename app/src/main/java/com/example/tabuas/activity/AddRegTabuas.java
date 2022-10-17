@@ -151,15 +151,15 @@ public class AddRegTabuas extends AppCompatActivity {
                         String dataFormatada;
                         if(day < 10) {
                             if (month <= 9) {
-                                dataFormatada = day + "-0" + month + "-0" + year;
+                                dataFormatada = year + "-0" + month + "-0" + day;
                             } else {
-                                dataFormatada = day + "-" + month + "-0" + year;
+                                dataFormatada = year + "-" + month + "-0" + day;
                             }
                         } else {
                             if (month <= 9) {
-                                dataFormatada = day + "-0" + month + "-" + year;
+                                dataFormatada = year + "-0" + month + "-" + day;
                             } else {
-                                dataFormatada = day + "-" + month + "-" + year;
+                                dataFormatada = year + "-" + month + "-" + day;
                             }
                         }
                         inputData.setText(dataFormatada);
