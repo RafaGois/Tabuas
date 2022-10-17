@@ -13,7 +13,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:onClick="volta"
-        android:tint="#698060"
+        android:tint="#D2D79F"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setaesquerda" />
@@ -38,7 +38,7 @@
         android:clickable="true"
         android:onClick="navegaAdicao"
         android:soundEffectsEnabled="true"
-        app:backgroundTint="#698060"
+        app:backgroundTint="#90B77D"
         app:backgroundTintMode="add"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

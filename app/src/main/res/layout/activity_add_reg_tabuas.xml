@@ -16,7 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/setaesquerda"
-        app:tint="#698060" />
+        app:tint="#D2D79F" />
 
     <TextView
         android:id="@+id/textView"
