@@ -14,6 +14,7 @@ import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -36,6 +37,10 @@ public class GraphRosquinha extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private double somaTora = 0;
+    private double somaM3 = 0;
+    private double somaTabua = 0;
 
     public GraphRosquinha() {
         // Required empty public constructor
@@ -93,12 +98,15 @@ public class GraphRosquinha extends Fragment {
             pieEntries.add(pieEntry);
         }
 
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,"Descricao");
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
         pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
         pieDataSet.setValueTextSize(16);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
 
+        pieChart.getDescription().setText("Total: R$ "+ String.format("%.2f", ( somaM3 + somaTora + somaTabua )) );
+        pieChart.getDescription().setTextSize(16);
+        pieChart.getDescription().setTextColor(Color.GRAY);
         //pieChart.setUsePercentValues(true);
 
         pieChart.setData(new PieData(pieDataSet));
@@ -116,9 +124,9 @@ public class GraphRosquinha extends Fragment {
     private double retornaSomaCategoria (int opcao) {
         RegistroDAO registroDAO = new RegistroDAO(getContext());
 
-        double somaTora = 0;
-        double somaM3 = 0;
-        double somaTabua = 0;
+        somaTabua = 0;
+        somaTora = 0;
+        somaM3 = 0;
 
         for (int i = 0; i < registroDAO.listar().size(); i++) {
             String op = registroDAO.listar().get(i).getCategoria();
