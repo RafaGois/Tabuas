@@ -102,6 +102,10 @@ public class GraphRegDia extends Fragment {
 
         ArrayList<Registro> registros = (ArrayList<Registro>) registroDAO.listar();
 
+        totalMetroCubico = 0;
+        totalTabuas = 0;
+        totalToras = 0;
+
         for (Registro reg : registros) {
             if (reg.getDateTime().trim().equals(dataSelecionada)) {
 
@@ -112,10 +116,6 @@ public class GraphRegDia extends Fragment {
                 } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
                     totalToras += reg.getValor();
                 }
-            } else {
-                totalMetroCubico = 0;
-                totalTabuas = 0;
-                totalToras = 0;
             }
         }
     }
@@ -182,8 +182,6 @@ public class GraphRegDia extends Fragment {
                     @Override
                     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                         month = month + 1;
-
-                        String date = day + "/" + month + "/" + year;
 
                         String dataFormatada;
                         if(day < 10) {
