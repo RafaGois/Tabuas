@@ -87,8 +87,8 @@ public class GraphBarra extends Fragment {
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
         for (int i = 0; i < registroDAO.listar().size(); i ++) {
-            BarEntry barEntry = new BarEntry( i, (float) registroDAO.listar().get(i).getValor(),registroDAO.listar().get(i).getCategoria());
-
+            //todo colocar dia no lugar do i
+            BarEntry barEntry = new BarEntry(i , (float) registroDAO.listar().get(i).getValor(),registroDAO.listar().get(i).getCategoria());
             barEntries.add(barEntry);
         }
 
@@ -105,5 +105,9 @@ public class GraphBarra extends Fragment {
 
         barChart.getDescription().setText("Descricao");
         barChart.getDescription().setTextColor(Color.BLUE);
+    }
+
+    private String cortaData (String data) {
+        return data.substring(0,2);
     }
 }
