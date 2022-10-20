@@ -2,6 +2,7 @@ package com.example.tabuas.fragmentos;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -17,9 +18,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.tabuas.R;
+import com.example.tabuas.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -36,7 +42,7 @@ public class GraphRegDia extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String dataSelecionada = "";
+    private String dataSelecionada = "2022-01-05";
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -81,13 +87,12 @@ public class GraphRegDia extends Fragment {
         super.onStart();
 
         agregaVals();
-        atribui();
 
         data();
 
         listenerData();
-
-        showVals();
+        vals();
+        agregaGrafico();
     }
 
     @Override
@@ -95,6 +100,84 @@ public class GraphRegDia extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_graph_reg_dia, container, false);
+    }
+
+    private void agregaGrafico () {
+
+
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        for (int i = 1; i <= 3; i++) {
+            PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i),retornaCategoria(i));
+            pieEntries.add(pieEntry);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
+        pieDataSet.setColors(Colors.MENDES_COLORS);
+        pieDataSet.setValueTextSize(16);
+
+        PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoRegDiario);
+
+        pieChart.getDescription().setText("Total: "+ String.format("%.2f", ( totalTabuas + totalToras + totalMetroCubico )) );
+        pieChart.getDescription().setTextSize(16);
+        pieChart.getDescription().setTextColor(Color.GRAY);
+        //pieChart.setUsePercentValues(true);
+
+        pieChart.setData(new PieData(pieDataSet));
+
+        pieChart.animateY(6000);
+
+        pieChart.setDrawCenterText(true);
+        pieChart.setCenterText("TOTAL PRODUZIDO POR CATEGORIA");
+        pieChart.setCenterTextSize(20);
+        pieChart.setCenterTextColor(Color.GRAY);
+
+        pieChart.setEntryLabelColor(Color.BLACK);
+    }
+
+    private void vals () {
+        RegistroDAO registroDAO = new RegistroDAO(getContext());
+
+        ArrayList<Registro> registros = (ArrayList<Registro>) registroDAO.listar();
+
+        totalMetroCubico = 0;
+        totalToras = 0;
+        totalTabuas = 0;
+
+        for (Registro reg : registros) {
+            if (reg.getDateTime().equals(dataSelecionada)) {
+
+                if (reg.getCategoria().equals(TiposCategorias.METRO_CUBICO.getValor())) {
+                    totalMetroCubico += reg.getValor();
+                } else if (reg.getCategoria().equals(TiposCategorias.TABUA.getValor())) {
+                    totalTabuas += reg.getValor();
+                } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
+                    totalToras += reg.getValor();
+                }
+
+            }
+        }
+    }
+
+    private double retornaSomaCategoria (int categ) {
+            if (categ == 1) {
+                return totalToras;
+            } else if (categ == 2) {
+                return totalMetroCubico;
+            } else {
+                return totalTabuas;
+            }
+    }
+
+    private String retornaCategoria (int opcao) {
+
+        if (opcao == 1) {
+            return TiposCategorias.TORA.getValor();
+        } else if (opcao == 2) {
+            return TiposCategorias.METRO_CUBICO.getValor();
+        } else {
+            return TiposCategorias.TABUA.getValor();
+        }
     }
 
     private void agregaVals () {
@@ -118,52 +201,6 @@ public class GraphRegDia extends Fragment {
                 }
             }
         }
-    }
-
-    private void showVals () {
-        if (totalToras != 0 || totalTabuas != 0 || totalMetroCubico != 0) {
-            mostra();
-        } else {
-            oculta();
-        }
-    }
-
-    private void mostra () {
-
-        LinearLayout ll = getView().findViewById(R.id.tabelaValores);
-        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
-
-        ll.setVisibility(View.VISIBLE);
-        txtDia.setVisibility(View.VISIBLE);
-    }
-
-    private void oculta () {
-
-        LinearLayout ll = getView().findViewById(R.id.tabelaValores);
-        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
-
-        ll.setVisibility(View.GONE);
-        txtDia.setVisibility(View.GONE);
-
-        //todo tambem mostrar "nenhum valor encontrado"
-    }
-
-    private void atribui () {
-
-        TextView txtDia = (TextView) getView().findViewById(R.id.txtDia);
-        txtDia.setText("Total produzido no dia "+ dataSelecionada);
-
-
-        TextView txtMCubico = (TextView) getView().findViewById(R.id.txtCubico);
-        TextView txtTabuas = (TextView) getView().findViewById(R.id.txtTabua);
-        TextView txtTora = (TextView) getView().findViewById(R.id.txtTora);
-
-        txtMCubico.setText("R$ "+String.format("%.2f", totalMetroCubico));
-        txtTabuas.setText("R$ "+String.format("%.2f", totalTabuas));
-        txtTora.setText("R$ "+String.format("%.2f", totalToras));
-
-        TextView txtTotal = getView().findViewById(R.id.txtRegDiaTotal);
-        txtTotal.setText("Total: R$ "+ String.format("%.2f", (totalTabuas + totalToras + totalMetroCubico)));
     }
 
     private void data () {
@@ -216,8 +253,6 @@ public class GraphRegDia extends Fragment {
                     if(!inputDate.getText().toString().equals("")) {
 
                         agregaVals();
-                        atribui();
-                        showVals();
 
                         InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
