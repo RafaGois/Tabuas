@@ -7,6 +7,7 @@ import android.os.Bundle;
 
 import com.example.tabuas.R;
 import com.example.tabuas.fragmentos.GraphBarra;
+import com.example.tabuas.fragmentos.GraphRegAno;
 import com.example.tabuas.fragmentos.GraphRegMes;
 import com.example.tabuas.fragmentos.GraphRosquinha;
 import com.example.tabuas.fragmentos.GraphRegDia;
@@ -32,6 +33,7 @@ public class Graph extends AppCompatActivity {
                 getSupportFragmentManager(), FragmentPagerItems.with(this)
                 .add("Registro por Dia", GraphRegDia.class)
                 .add("Registro por Mês", GraphRegMes.class)
+                .add("Registro por Ano", GraphRegAno.class)
                 .add("Relatório por Registro", GraphBarra.class)
                 .add("Total por Categoria", GraphRosquinha.class)
                 .create());
