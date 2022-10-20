@@ -135,7 +135,7 @@ public class GraphRegAno extends Fragment {
         pieChart.animateY(6000);
 
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterText("TOTAL PRODUZIDO POR DIA");
+        pieChart.setCenterText("TOTAL PRODUZIDO POR ANO");
         pieChart.setCenterTextSize(20);
         pieChart.setCenterTextColor(Color.GRAY);
 

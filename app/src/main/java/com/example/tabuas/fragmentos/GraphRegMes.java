@@ -122,7 +122,7 @@ public class GraphRegMes extends Fragment {
         pieChart.animateY(6000);
 
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterText("TOTAL PRODUZIDO POR DIA");
+        pieChart.setCenterText("TOTAL PRODUZIDO POR MÊS");
         pieChart.setCenterTextSize(20);
         pieChart.setCenterTextColor(Color.GRAY);
 
@@ -166,7 +166,6 @@ public class GraphRegMes extends Fragment {
                 } else if (reg.getCategoria().equals(TiposCategorias.TORA.getValor())) {
                     totalToras += reg.getValor();
                 }
-
             }
         }
     }
@@ -178,8 +177,8 @@ public class GraphRegMes extends Fragment {
     }
 
     private String cortaData (String data) {
-        if (data != null) {
-            return data.substring(5,7);
+        if (data != null && data.length() >= 7) {
+            return data.substring(0,7);
         } else {
             return "";
         }
