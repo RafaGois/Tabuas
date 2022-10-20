@@ -131,7 +131,7 @@ public class GraphRegDia extends Fragment {
         pieChart.animateY(6000);
 
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterText("TOTAL PRODUZIDO POR DIA");
+        pieChart.setCenterText("TOTAL PRODUZIDO POR MÊS");
         pieChart.setCenterTextSize(20);
         pieChart.setCenterTextColor(Color.GRAY);
 

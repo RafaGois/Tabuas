@@ -16,7 +16,7 @@ public class Colors {
 
     public static final int[] VERDE_PASTEL_COLORS = {
             Color.rgb(95, 122, 107), Color.rgb(54, 85, 69),
-            Color.rgb(28, 51, 45), Color.rgb(156, 167, 161)
+            Color.rgb(55, 92, 82), Color.rgb(156, 167, 161)
     };
 
 
