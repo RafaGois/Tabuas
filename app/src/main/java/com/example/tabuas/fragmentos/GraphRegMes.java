@@ -1,5 +1,6 @@
 package com.example.tabuas.fragmentos;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -13,9 +14,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.tabuas.R;
+import com.example.tabuas.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 
 import java.util.ArrayList;
 
@@ -81,7 +87,7 @@ public class GraphRegMes extends Fragment {
         listenerSpinner();
 
         vals();
-        agregaVals();
+        agregaGraph();
     }
 
     @Override
@@ -90,6 +96,61 @@ public class GraphRegMes extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_graph_reg_mes, container, false);
     }
+
+    private void agregaGraph () {
+
+
+        ArrayList<PieEntry> pieEntries = new ArrayList<>();
+
+        for (int i = 1; i <= 3; i++) {
+            PieEntry pieEntry = new PieEntry( (float) retornaSomaCategoria(i),retornaCategoria(i));
+            pieEntries.add(pieEntry);
+        }
+
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
+        pieDataSet.setColors(Colors.MENDES_COLORS);
+        pieDataSet.setValueTextSize(16);
+
+        PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoRegMensal);
+
+        pieChart.getDescription().setText("Total: "+ String.format("%.2f", ( totalTabuas + totalToras + totalMetroCubico )) );
+        pieChart.getDescription().setTextSize(16);
+        pieChart.getDescription().setTextColor(Color.GRAY);
+        //pieChart.setUsePercentValues(true);
+
+        pieChart.setData(new PieData(pieDataSet));
+
+        pieChart.animateY(6000);
+
+        pieChart.setDrawCenterText(true);
+        pieChart.setCenterText("TOTAL PRODUZIDO POR DIA");
+        pieChart.setCenterTextSize(20);
+        pieChart.setCenterTextColor(Color.GRAY);
+
+        pieChart.setEntryLabelColor(Color.BLACK);
+    }
+
+    private double retornaSomaCategoria (int categ) {
+        if (categ == 1) {
+            return totalToras;
+        } else if (categ == 2) {
+            return totalMetroCubico;
+        } else {
+            return totalTabuas;
+        }
+    }
+
+    private String retornaCategoria (int opcao) {
+
+        if (opcao == 1) {
+            return TiposCategorias.TORA.getValor();
+        } else if (opcao == 2) {
+            return TiposCategorias.METRO_CUBICO.getValor();
+        } else {
+            return TiposCategorias.TABUA.getValor();
+        }
+    }
+
 
     private void vals () {
         RegistroDAO registroDAO = new RegistroDAO(getContext());
@@ -125,21 +186,6 @@ public class GraphRegMes extends Fragment {
         }
     }
 
-    private void agregaVals () {
-
-        TextView tMc = getView().findViewById(R.id.textView12);
-        TextView txtabuas = getView().findViewById(R.id.textView13);
-        TextView txtoras = getView().findViewById(R.id.textView14);
-
-        tMc.setText("R$ "+String.format("%.2f", totalMetroCubico));
-        txtabuas.setText("R$ "+String.format("%.2f", totalTabuas));
-        txtoras.setText("R$ "+String.format("%.2f", totalToras));
-
-        TextView txtTotal = getView().findViewById(R.id.txtRegMesTotal);
-        txtTotal.setText("Total: R$ "+ String.format("%.2f", (totalTabuas + totalToras + totalMetroCubico)));
-
-    }
-
     private void listenerSpinner () {
         Spinner spinner = getView().findViewById(R.id.spinnerMeses);
 
@@ -157,7 +203,7 @@ public class GraphRegMes extends Fragment {
                     mesSelecionado = Integer.toString(i + 1);
                 }
                 vals();
-                agregaVals();
+                agregaGraph();
             }
 
             @Override
