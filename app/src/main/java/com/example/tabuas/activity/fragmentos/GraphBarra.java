@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.example.tabuas.R;
+import com.example.tabuas.activity.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -93,7 +94,7 @@ public class GraphBarra extends Fragment {
         }
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Valores");
-        barDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        barDataSet.setColors(Colors.MENDES_COLORS);
 
         barDataSet.setValueTextSize(14);
 

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tabuas.R;
+import com.example.tabuas.activity.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.github.mikephil.charting.charts.PieChart;
@@ -99,7 +100,7 @@ public class GraphRosquinha extends Fragment {
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
-        pieDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
+        pieDataSet.setColors(Colors.MENDES_COLORS);
         pieDataSet.setValueTextSize(16);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
