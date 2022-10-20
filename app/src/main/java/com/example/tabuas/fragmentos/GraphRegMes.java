@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.Colors;
@@ -22,7 +23,10 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,6 +47,7 @@ public class GraphRegMes extends Fragment {
     private String [] meses = {"Janeiro","Fevereiro","Março","Abril","Maio","Junho","Julho","Agosto","Setembro","Outubro","Novembro","Dezembro"};
 
     private String mesSelecionado = "01";
+    private String anoSelecionado;
     private double totalMetroCubico;
     private double totalTabuas;
     private double totalToras;
@@ -82,8 +87,12 @@ public class GraphRegMes extends Fragment {
     public void onStart() {
         super.onStart();
 
+        getAnoAtual();
         agregaSpinner();
         listenerSpinner();
+        listenerSpinnerAno();
+
+        agregaSpinnerAno();
 
         vals();
         agregaGraph();
@@ -94,6 +103,42 @@ public class GraphRegMes extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_graph_reg_mes, container, false);
+    }
+
+    private void listenerSpinnerAno () {
+        Spinner spinner = getView().findViewById(R.id.spinnerAnoMes);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                totalMetroCubico = 0;
+                totalTabuas = 0;
+                totalToras = 0;
+                mesSelecionado = "";
+
+                //todo remover a soma do i cpara mes
+                if ((i + 1) <= 9) {
+                    mesSelecionado = anoSelecionado + "-0" + (i + 1);
+                } else {
+                    mesSelecionado = anoSelecionado + "-"+ (i + 1);
+                }
+                Toast.makeText(getContext(), mesSelecionado, Toast.LENGTH_SHORT).show();
+                vals();
+                agregaGraph();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+
+    private void getAnoAtual (){
+        Date hoje = new Date();
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("yyyy");
+        anoSelecionado = df.format(hoje);
     }
 
     private void agregaGraph () {
@@ -184,6 +229,38 @@ public class GraphRegMes extends Fragment {
         }
     }
 
+    private void agregaSpinnerAno () {
+        Spinner spinner = getView().findViewById(R.id.spinnerAnoMes);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, retornaAnos());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private List<String> retornaAnos () {
+        RegistroDAO dao = new RegistroDAO(getContext());
+
+        List<Registro> registros = dao.listar();
+        List<String> anos = new ArrayList<>();
+
+        for (Registro reg : registros) {
+            if (!anos.contains(cortaAno(reg.getDateTime()))) {
+                anos.add(cortaAno(reg.getDateTime()));
+            }
+        }
+        return anos;
+    }
+
+    private String cortaAno (String input) {
+        String ano;
+        if (input.length() >= 4) {
+            ano = input.substring(0,4);
+            return ano;
+        } else {
+            return "";
+        }
+    }
+
     private void listenerSpinner () {
         Spinner spinner = getView().findViewById(R.id.spinnerMeses);
 
@@ -194,12 +271,15 @@ public class GraphRegMes extends Fragment {
                 totalMetroCubico = 0;
                 totalTabuas = 0;
                 totalToras = 0;
+                mesSelecionado = "";
 
                 if ((i + 1) <= 9) {
-                    mesSelecionado = "0" + (i + 1);
+                    mesSelecionado = anoSelecionado + "-0" + (i + 1);
                 } else {
-                    mesSelecionado = Integer.toString(i + 1);
+                    mesSelecionado = anoSelecionado + "-"+ (i + 1);
                 }
+                Toast.makeText(getContext(), mesSelecionado, Toast.LENGTH_SHORT).show();
+
                 vals();
                 agregaGraph();
             }

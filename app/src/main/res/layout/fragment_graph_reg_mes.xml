@@ -10,12 +10,15 @@
         android:id="@+id/spinnerMeses"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.08" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerAnoMes"
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
         android:layout_width="0dp"
@@ -38,6 +41,19 @@
             android:layout_weight="1" />
 
     </LinearLayout>
+
+    <Spinner
+        android:id="@+id/spinnerAnoMes"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.046" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
