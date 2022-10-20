@@ -1,4 +1,4 @@
-package com.example.tabuas.activity.fragmentos;
+package com.example.tabuas.fragmentos;
 
 import android.app.DatePickerDialog;
 import android.content.Context;

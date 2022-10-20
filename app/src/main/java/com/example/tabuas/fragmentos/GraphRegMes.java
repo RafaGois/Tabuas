@@ -1,4 +1,4 @@
-package com.example.tabuas.activity.fragmentos;
+package com.example.tabuas.fragmentos;
 
 import android.os.Bundle;
 
@@ -11,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.RegistroDAO;
@@ -19,7 +18,6 @@ import com.example.tabuas.helper.TiposCategorias;
 import com.example.tabuas.model.Registro;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.

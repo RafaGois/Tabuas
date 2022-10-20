@@ -1,7 +1,6 @@
-package com.example.tabuas.activity.fragmentos;
+package com.example.tabuas.fragmentos;
 
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -11,15 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.tabuas.R;
-import com.example.tabuas.activity.helper.Colors;
+import com.example.tabuas.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 import com.example.tabuas.helper.TiposCategorias;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 

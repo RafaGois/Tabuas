@@ -6,10 +6,10 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 
 import com.example.tabuas.R;
-import com.example.tabuas.activity.fragmentos.GraphBarra;
-import com.example.tabuas.activity.fragmentos.GraphRegMes;
-import com.example.tabuas.activity.fragmentos.GraphRosquinha;
-import com.example.tabuas.activity.fragmentos.GraphRegDia;
+import com.example.tabuas.fragmentos.GraphBarra;
+import com.example.tabuas.fragmentos.GraphRegMes;
+import com.example.tabuas.fragmentos.GraphRosquinha;
+import com.example.tabuas.fragmentos.GraphRegDia;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItemAdapter;
 import com.ogaclejapan.smarttablayout.utils.v4.FragmentPagerItems;

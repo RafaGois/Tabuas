@@ -1,4 +1,4 @@
-package com.example.tabuas.activity.splash;
+package com.example.tabuas.splash;
 
 import androidx.appcompat.app.AppCompatActivity;
 
