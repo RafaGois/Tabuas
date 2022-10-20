@@ -27,8 +27,10 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -86,11 +88,14 @@ public class GraphRegDia extends Fragment {
     public void onStart() {
         super.onStart();
 
+        getDataAtual();
+
         agregaVals();
 
         data();
 
         listenerData();
+
         vals();
         agregaGrafico();
     }
@@ -128,7 +133,7 @@ public class GraphRegDia extends Fragment {
         pieChart.animateY(6000);
 
         pieChart.setDrawCenterText(true);
-        pieChart.setCenterText("TOTAL PRODUZIDO POR CATEGORIA");
+        pieChart.setCenterText("TOTAL PRODUZIDO POR DIA");
         pieChart.setCenterTextSize(20);
         pieChart.setCenterTextColor(Color.GRAY);
 
@@ -253,6 +258,8 @@ public class GraphRegDia extends Fragment {
                     if(!inputDate.getText().toString().equals("")) {
 
                         agregaVals();
+                        vals();
+                        agregaGrafico();
 
                         InputMethodManager inputManager = (InputMethodManager)getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputManager.hideSoftInputFromWindow(getActivity().getCurrentFocus().getWindowToken(),
@@ -263,7 +270,12 @@ public class GraphRegDia extends Fragment {
                 return false;
             }
         });
+    }
 
-
+    private void getDataAtual (){
+        Date hoje = new Date();
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("yyyy-MM-dd");
+        dataSelecionada = df.format(hoje);
     }
 }
