@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.Colors;
@@ -108,7 +107,7 @@ public class GraphRegMes extends Fragment {
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
-        pieDataSet.setColors(Colors.MENDES_COLORS);
+        pieDataSet.setColors(Colors.VERDE_VIBRANTE_COLORS);
         pieDataSet.setValueTextSize(16);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoRegMensal);

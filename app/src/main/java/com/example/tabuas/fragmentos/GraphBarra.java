@@ -92,7 +92,7 @@ public class GraphBarra extends Fragment {
         }
 
         BarDataSet barDataSet = new BarDataSet(barEntries,"Valores");
-        barDataSet.setColors(Colors.MENDES_COLORS);
+        barDataSet.setColors(Colors.VERDE_PADRAO_COLORS);
 
         barDataSet.setValueTextSize(14);
 

@@ -14,8 +14,6 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.Colors;
@@ -118,7 +116,7 @@ public class GraphRegDia extends Fragment {
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
-        pieDataSet.setColors(Colors.MENDES_COLORS);
+        pieDataSet.setColors(Colors.VERDE_PADRAO_COLORS);
         pieDataSet.setValueTextSize(16);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoRegDiario);

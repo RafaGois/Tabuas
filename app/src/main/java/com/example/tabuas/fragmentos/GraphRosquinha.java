@@ -97,7 +97,7 @@ public class GraphRosquinha extends Fragment {
         }
 
         PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
-        pieDataSet.setColors(Colors.MENDES_COLORS);
+        pieDataSet.setColors(Colors.VERDE_PADRAO_COLORS);
         pieDataSet.setValueTextSize(16);
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
