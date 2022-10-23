@@ -102,7 +102,7 @@ public class GraphRosquinha extends Fragment {
 
         PieChart pieChart = (PieChart) getView().findViewById(R.id.graficoPie);
 
-        pieChart.getDescription().setText("Total: R$ "+ String.format("%.2f", ( somaM3 + somaTora + somaTabua )) );
+        pieChart.getDescription().setText("Total: "+ String.format("%.2f", ( somaM3 + somaTora + somaTabua )) );
         pieChart.getDescription().setTextSize(16);
         pieChart.getDescription().setTextColor(Color.GRAY);
         //pieChart.setUsePercentValues(true);
