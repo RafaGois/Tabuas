@@ -8,17 +8,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.example.tabuas.R;
 import com.example.tabuas.helper.Colors;
 import com.example.tabuas.helper.RegistroDAO;
 
+import com.example.tabuas.model.Registro;
 import com.github.mikephil.charting.charts.BarChart;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,6 +42,8 @@ public class GraphBarra extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private String anoSelecioado;
 
     public GraphBarra() {
         // Required empty public constructor
@@ -70,7 +79,14 @@ public class GraphBarra extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
+
+        getAnoAtual();
+
+        agregaSpinner();
+
         agregaGrafico();
+
+        listenerSpinner();
     }
 
     @Override
@@ -81,13 +97,12 @@ public class GraphBarra extends Fragment {
     }
 
     private void agregaGrafico () {
-        RegistroDAO registroDAO = new RegistroDAO(getContext());
 
         ArrayList<BarEntry> barEntries = new ArrayList<>();
 
-        for (int i = 0; i < registroDAO.listar().size(); i ++) {
+        for (int i = 0; i < valoresAno().size(); i ++) {
             //todo colocar dia no lugar do i
-            BarEntry barEntry = new BarEntry(i , (float) registroDAO.listar().get(i).getValor(),registroDAO.listar().get(i).getCategoria());
+            BarEntry barEntry = new BarEntry(i , (float) valoresAno().get(i).getValor(),valoresAno().get(i).getCategoria());
             barEntries.add(barEntry);
         }
 
@@ -106,7 +121,75 @@ public class GraphBarra extends Fragment {
         barChart.getDescription().setTextColor(Color.BLUE);
     }
 
-    private String cortaData (String data) {
-        return data.substring(0,2);
+    private List<Registro> valoresAno () {
+        RegistroDAO registroDAO = new RegistroDAO(getContext());
+
+        List<Registro> registros = registroDAO.listar();
+        List<Registro> registrosAno = new ArrayList<>();
+
+        for (Registro reg : registros) {
+            if (cortaAno(reg.getDateTime()).equals(anoSelecioado)) {
+                registrosAno.add(reg);
+            }
+        }
+        return registrosAno;
+    }
+
+    private List<String> retornaAnos () {
+        RegistroDAO dao = new RegistroDAO(getContext());
+
+        List<Registro> registros = dao.listar();
+        List<String> anos = new ArrayList<>();
+
+        for (Registro reg : registros) {
+            if (!anos.contains(cortaAno(reg.getDateTime()))) {
+                anos.add(cortaAno(reg.getDateTime()));
+            }
+        }
+        return anos;
+    }
+
+    private String cortaAno (String input) {
+        String ano;
+        if (input.length() >= 4) {
+            ano = input.substring(0,4);
+            return ano;
+        } else {
+            return "";
+        }
+    }
+
+    private void getAnoAtual (){
+        Date hoje = new Date();
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("yyyy");
+        anoSelecioado = df.format(hoje);
+    }
+
+    private void agregaSpinner () {
+        Spinner spinner = getView().findViewById(R.id.spinner2);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_spinner_item, retornaAnos());
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
+    private void listenerSpinner () {
+        Spinner spinner = getView().findViewById(R.id.spinner2);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+                anoSelecioado = spinner.getSelectedItem().toString();
+
+                agregaGrafico();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 }
