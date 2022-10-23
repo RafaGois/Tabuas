@@ -70,6 +70,7 @@
             android:onClick="navegaGraficos"
             android:scaleType="centerInside"
             android:src="@drawable/arvoresicon" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
